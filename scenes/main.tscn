@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://25owjnmxma14"]
+
+[ext_resource type="Texture2D" uid="uid://ij5yuyh55qx6" path="res://assets/backgrounds/background2.png" id="1_pg5yo"]
+[ext_resource type="Texture2D" uid="uid://m8pm20pm70bp" path="res://assets/backgrounds/background1.png" id="1_q5mfp"]
+[ext_resource type="Script" path="res://scripts/Background.gd" id="2_r7o8u"]
+[ext_resource type="Texture2D" uid="uid://il2h0x0rrcjn" path="res://assets/backgrounds/background3.png" id="3_wt82s"]
+[ext_resource type="PackedScene" uid="uid://d32v53fthbj8v" path="res://scenes/player.tscn" id="5_q810t"]
+[ext_resource type="Script" path="res://scripts/object_pool.gd" id="6_y66it"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdrpk"]
+size = Vector2(1163.5, 106.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbyo3"]
+size = Vector2(105.5, 691)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tkgkd"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background1" type="Sprite2D" parent="."]
+texture = ExtResource("1_pg5yo")
+centered = false
+script = ExtResource("2_r7o8u")
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(1266, 0)
+texture = ExtResource("3_wt82s")
+centered = false
+script = ExtResource("2_r7o8u")
+
+[node name="Background3" type="Sprite2D" parent="."]
+position = Vector2(2532, 0)
+texture = ExtResource("1_q5mfp")
+centered = false
+script = ExtResource("2_r7o8u")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CeilCollision" type="CollisionShape2D" parent="Walls"]
+position = Vector2(577, 11)
+shape = SubResource("RectangleShape2D_tdrpk")
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-50.25, 304.5)
+shape = SubResource("RectangleShape2D_jbyo3")
+
+[node name="RightLeftCollision" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1199, 304.5)
+shape = SubResource("RectangleShape2D_jbyo3")
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_tkgkd")
+
+[node name="FloorCollision" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(577, 628)
+shape = SubResource("RectangleShape2D_tdrpk")
+
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource("6_y66it")
+g_path = "res://scenes/characters/"
+
+[node name="Player" parent="." instance=ExtResource("5_q810t")]
+position = Vector2(572, 501)

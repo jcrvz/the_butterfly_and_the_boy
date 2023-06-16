@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://k5prm062wx4s"]
+
+[ext_resource type="Texture2D" uid="uid://dhu15isqdb5bk" path="res://assets/enemies/raven1.png" id="1_voo15"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_yd3kd"]
+
+[sub_resource type="Animation" id="Animation_7f0ph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o6rgy"]
+resource_name = "moving"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_voo15")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pan7i"]
+_data = {
+"RESET": SubResource("Animation_7f0ph"),
+"moving": SubResource("Animation_o6rgy")
+}
+
+[node name="Raven" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_yd3kd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_voo15")
+flip_h = true
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pan7i")
+}
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.2, 0.2)
+polygon = PackedVector2Array(-146, -90, -78, -82, -44, -114, -10, -106, -8, -146, 34, -154, 102, -94, 124, -72, 202, -60, 198, -6, 194, 34, 190, 78, 90, 86, 58, 148, 14, 110, 24, 72, -42, -10, -64, -26)

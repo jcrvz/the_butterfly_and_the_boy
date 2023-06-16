@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv2k5j1s6sn4e"]
+
+[ext_resource type="Script" path="res://scripts/boy.gd" id="1_4eqsc"]
+[ext_resource type="PackedScene" uid="uid://d32v53fthbj8v" path="res://scenes/player.tscn" id="2_capxx"]
+
+[node name="Player" type="RigidBody2D"]
+collision_mask = 6
+script = ExtResource("1_4eqsc")
+up_impulse = null
+
+[node name="Player" parent="." instance=ExtResource("2_capxx")]
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

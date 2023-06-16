@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bicnl71h4271s"]
+
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_8g1am"]
+[ext_resource type="Texture2D" uid="uid://y7rgxrvm0uob" path="res://assets/enemies/aerosol_can1.png" id="1_xggqe"]
+
+[sub_resource type="Animation" id="Animation_hihpc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.48787e-16]
+}
+
+[sub_resource type="Animation" id="Animation_naptt"]
+resource_name = "moving"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_xggqe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlgy2"]
+_data = {
+"RESET": SubResource("Animation_hihpc"),
+"moving": SubResource("Animation_naptt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jopgm"]
+radius = 39.0
+
+[node name="ToxicCan" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_8g1am")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_xggqe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_vlgy2")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jopgm")

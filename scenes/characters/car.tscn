@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1fms3cwdvmfc"]
+
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_nba52"]
+[ext_resource type="Texture2D" uid="uid://iilh1edqtj3l" path="res://assets/enemies/car1.png" id="1_rgtro"]
+
+[sub_resource type="Animation" id="Animation_s5u0r"]
+resource_name = "moving"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rgtro")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 10), Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 20), Vector2(0, 0), Vector2(2.08165e-12, 10), Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 20), Vector2(1.80512e-12, -5.79461), Vector2(2.08165e-12, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_clt6y"]
+_data = {
+"moving": SubResource("Animation_s5u0r")
+}
+
+[node name="car" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_nba52")
+on_ground = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_clt6y")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(221, -1, 263, 2, 265, 102, 209, 102, 203, 121, 179, 135, 154, 135, 128, 116, 117, 102, -127, 108, -135, 124, -152, 140, -164, 144, -192, 144, -219, 111, -278, 114, -284, 95, -277, 82, -273, 15, -257, 1, -171, -2, -137, -29, -119, -27, -66, -73, 12, -108, 95, -104, 147, -77, 191, -41)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_rgtro")
+offset = Vector2(2.08165e-12, 2.08165e-12)
