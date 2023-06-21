@@ -14,7 +14,7 @@ func state_process(delta):
 		next_state = air_state
 
 func state_input(event : InputEvent):
-	if(event.is_action_pressed("ui_select")):
+	if(event.is_action_pressed("ui_select") and character.is_on_floor()):
 		jump()
 #	if(event.is_action_pressed("duck")):
 #		duck()

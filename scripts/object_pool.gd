@@ -30,6 +30,7 @@ func _ready():
 		for _i in g_copies_of_each:
 			var object : Node2D = resource.instantiate()
 			object.global_position = _get_random_global_position(object)
+			object.z_index = 5
 			
 			g_object_pool.append(object)
 			g_object_pool_available.append(object)

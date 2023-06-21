@@ -12,7 +12,9 @@ func get_height() -> float:
 	
 func reset() -> void:
 	g_velocity = 0
+	Signals.emit_signal("reward_player", 1)
 	
 func start(velocity: float) -> void:
 	g_velocity = -velocity
 	$AnimationPlayer.play(default_animation)
+

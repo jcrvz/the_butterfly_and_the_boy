@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d32v53fthbj8v"]
+[gd_scene load_steps=27 format=3 uid="uid://d32v53fthbj8v"]
 
 [ext_resource type="Texture2D" uid="uid://wjlhc38vkc0v" path="res://assets/character/boy_run.png" id="1_4wdyb"]
 [ext_resource type="Script" path="res://scripts/boy.gd" id="1_pi0fu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/AirState.gd" id="5_a6ksi"]
 [ext_resource type="Script" path="res://scripts/LandingState.gd" id="5_vgq5g"]
 [ext_resource type="Script" path="res://scripts/GroundState.gd" id="5_w0ctb"]
+[ext_resource type="Texture2D" uid="uid://bp3c61mvn6hx" path="res://assets/character/butterfly.png" id="8_istn0"]
 
 [sub_resource type="Animation" id="Animation_b7pxo"]
 length = 0.001
@@ -214,6 +215,67 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c164e"]
 
+[sub_resource type="Animation" id="Animation_abwwy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_toh87"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_istn0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_toa1r"]
+_data = {
+"RESET": SubResource("Animation_abwwy"),
+"idle": SubResource("Animation_toh87")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_pi0fu")
@@ -248,20 +310,50 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Ground")
 
-[node name="Ground" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state")]
+[node name="Ground" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_w0ctb")
-air_state = NodePath("../Air")
 
-[node name="Air" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state")]
+[node name="Air" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_a6ksi")
-landing_state = NodePath("../Ground")
 landing_animation = "jump"
 
-[node name="Landing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ground_state")]
+[node name="Landing" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_vgq5g")
 landing_animation_name = "jump"
-ground_state = NodePath("../Ground")
 
 [node name="Duck" type="Node" parent="PlayerStateMachine"]
 
+[node name="Butterfly" type="CharacterBody2D" parent="."]
+collision_mask = 14
+
+[node name="ButterflySprite" type="Sprite2D" parent="Butterfly"]
+position = Vector2(-26, -47)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("8_istn0")
+offset = Vector2(2.08165e-12, 2.08165e-12)
+hframes = 5
+
+[node name="AnimationButterfly" type="AnimationPlayer" parent="Butterfly"]
+root_node = NodePath("../ButterflySprite")
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_toa1r")
+}
+
+[node name="CollisionButterfly" type="CollisionPolygon2D" parent="Butterfly"]
+polygon = PackedVector2Array(-48, -47, -62, -63, -51, -78, -39, -87, -23, -79, -24, -66, -17, -52, -22, -39, -25, -32, -34, -25, -40, -26, -53, -39)
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionPolygonRight" type="CollisionPolygon2D" parent="DamageArea"]
+polygon = PackedVector2Array(-10, -60, -34, -81, -52, -79, -64, -60, -53, -46, -41, -27, -32, -16, -7, 26, 4, 24, 3, -27)
+
+[node name="CollisionPolygonLeft" type="CollisionPolygon2D" parent="DamageArea"]
+position = Vector2(0.757401, -7.62939e-06)
+scale = Vector2(0.990252, 1)
+polygon = PackedVector2Array(-2.78454, 5.00001, 8.32374, 29, 44.6781, -20, 49.7273, -45, 53.7667, -69, 48.7175, -85, 31.5501, -88, 14.3828, -71, -4.80423, -34)
+disabled = true
+
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Landing" method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
