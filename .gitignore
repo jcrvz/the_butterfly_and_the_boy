@@ -2,3 +2,5 @@
 .godot/
 *.apk
 *.aar
+*.exe
+*.dmg

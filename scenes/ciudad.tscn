@@ -2544,7 +2544,6 @@ shape = SubResource("RectangleShape2D_tdrpk")
 
 [node name="Enemies" type="Node" parent="."]
 script = ExtResource("7_oa3y3")
-g_path = "res://scenes/characters/"
 
 [node name="Player" parent="." instance=ExtResource("8_n5mcj")]
 z_index = 5

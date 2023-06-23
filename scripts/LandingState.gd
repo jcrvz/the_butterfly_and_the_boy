@@ -1,6 +1,6 @@
 extends State
 
-class_name LandingState
+class_name LandingState 
 
 @export var landing_animation_name : String = "landing"
 @export var ground_state : State

@@ -1,12 +1,12 @@
 extends Node
 
-class_name ObjectPool
+class_name ObjectPool 
 
 @export var g_copies_of_each : int = 5
 @export var g_y_tracks : Array = [150, 300, 500]
 @export var g_object_velocity : int = 5
 @export var g_starting_x : int = 1500
-@export var g_path : String = ""
+@export var g_path : String = "res://scenes/characters/"
 @export var g_min_spawn_wait_ms : int = 1000
 @export var g_max_spawn_wait_ms : int = 2000
 
@@ -22,12 +22,24 @@ const LEFT_BOUND : int = -50
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Get all the paths in g_path
-	var paths : Array = _get_full_paths(g_path)
+#	var paths : Array = _get_full_paths(g_path)
+#	print(paths)
+	const CAR_PATH : String = "res://scenes/characters/car.tscn"
+	const CAN_PATH : String = "res://scenes/characters/raven.tscn"
+	const RAVEN_PATH : String = "res://scenes/characters/toxic_can.tscn"
 #	print("paths = ", paths)
 	# For each path
-	for path in paths:
-		var resource = load(path)
-		for _i in g_copies_of_each:
+	instatiate_many(preload(CAR_PATH))
+	instatiate_many(preload(CAN_PATH))
+	instatiate_many(preload(RAVEN_PATH))
+		
+		
+#			get_parent().call_deferred('add_child_below_node', self, object)
+			
+	# 	load the resource at that path
+	
+func instatiate_many(resource):
+	for _i in g_copies_of_each:
 			var object : Node2D = resource.instantiate()
 			object.global_position = _get_random_global_position(object)
 			object.z_index = 5
@@ -36,16 +48,17 @@ func _ready():
 			g_object_pool_available.append(object)
 			
 			add_child(object)
-#			get_parent().call_deferred('add_child_below_node', self, object)
-			
-	# 	load the resource at that path
-	
 	# 	make g_copies_of_each copies of it
 	
 	# 	put the resource into our pool of objects
 
 func _get_full_paths(path: String) -> Array:
+	if path.ends_with(".tscn.remap"):
+		path = path.trim_suffix(".tscn.remap")
+		return [path]
+	
 	if path.ends_with(".tscn"):
+		path = path.trim_suffix(".tscn")
 		return [path]
 	
 	var files = _list_files_in_directory(path)
