@@ -321,8 +321,6 @@ landing_animation = "jump"
 script = ExtResource("5_vgq5g")
 landing_animation_name = "jump"
 
-[node name="Duck" type="Node" parent="PlayerStateMachine"]
-
 [node name="Butterfly" type="CharacterBody2D" parent="."]
 collision_mask = 14
 

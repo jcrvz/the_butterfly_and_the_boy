@@ -63,7 +63,7 @@ func update_facing_direction():
 		
 	
 func _on_damage_area_body_entered(body):
-	print("Dead!")	
+#	print("Dead!")	
 	Signals.emit_signal("kill_player")
 
 func kill_player():
@@ -72,4 +72,4 @@ func kill_player():
 func reward_player(score_to_add):
 	score += score_to_add
 	Signals.emit_signal("update_score", score)
-	print(score)
+#	print(score)
