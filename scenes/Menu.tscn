@@ -82,17 +82,24 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="BosqueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
-text = "Iniciar"
+text = "Ir al Bosque"
+
+[node name="CiudadButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+text = "Ir a la Ciudad"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../StartButton")
+focus_neighbor_top = NodePath("../BosqueButton")
+focus_neighbor_bottom = NodePath("../BosqueButton")
 text = "Salir"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BosqueButton" to="." method="_on_bosque_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CiudadButton" to="." method="_on_ciudad_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
