@@ -1,6 +1,6 @@
 # El Niño y La Mariposa
 
-Para descargar el juego, [haz clic aquí.](https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip)
+Para descargar el juego, <a href="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip" download="Videojuego_WIN.zip">haz clic aquí.</a>
 
 Por Emilio E.R.
 
