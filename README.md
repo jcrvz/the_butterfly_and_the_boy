@@ -2,11 +2,21 @@
 
 Por Emilio E.R.
 
-Para descargar el juego, 
+## Para descargar el juego:
+ 1. Primero, <a href="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip" download="Videojuego_WIN.zip" target="_blank">haz clic aquí.</a>
+2. Luego, descarga el archivo .ZIP con el tercer botón en la parte superior derecha de la pantalla, que se ve como:
 
-<iframe src="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip"></iframe>
-<a href="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip" download="Videojuego_WIN.zip" target="_blank">haz clic aquí.</a>
+![Alt text](image.png)
 
+3. Descomprímelo:
+
+![Alt text](image-1.png)
+
+4. Finalmente, ejecuta **"TheButterflyAndTheBoy.exe"** y disfruta:
+
+![Alt text](<Capture d’écran 2023-06-23 à 18.39.13.png>)
+
+**NOTA:** Ten en cuenta que este juego solo sirve en Windows, si requieres la versión para macOS, puedes [descargarla aquí.](https://www.dropbox.com/s/dtvi2of68hpp0le/TheButterflyAndTheBoy_MAC.zip?dl=0)
 
 ## Reseña
 
