@@ -14,7 +14,7 @@ Por Emilio E.R.
 
 4. Finalmente, ejecuta **"TheButterflyAndTheBoy.exe"** y disfruta:
 
-![Alt text](<Capture d’écran 2023-06-23 à 18.39.13.png>)
+![Alt text](<captura.png>)
 
 **NOTA:** Ten en cuenta que este juego solo sirve en Windows, si requieres la versión para macOS, puedes [descargarla aquí.](https://www.dropbox.com/s/dtvi2of68hpp0le/TheButterflyAndTheBoy_MAC.zip?dl=0)
 
