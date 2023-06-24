@@ -2,7 +2,7 @@
 
 Por Emilio E.R.
 
-Para descargar el juego, <a href="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip" download="Videojuego_WIN.zip">haz clic aquí.</a>
+Para descargar el juego, <a href="https://github.com/jcrvz/the_butterfly_and_the_boy/blob/main/dist/Videojuego_WIN.zip" download="Videojuego_WIN.zip" target="_blank">haz clic aquí.</a>
 
 
 ## Reseña
